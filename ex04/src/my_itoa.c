@@ -1,31 +1,29 @@
-char  *ft_iswhitespace(char *str)
-{
-  while (*str == ' ' || (*str >= 9 && *str <= 13))
-		str++;
-	return (str);
-}
+#include <stdlib.h>
 
-int   my_itoa(const char *nptr)
+char   *my_itoa(int nmb)
 {
-  char  *str;
-  int   sign;
-  int   nbr;
+  char  *array;
+  int   order;
+  int   tmp_nmb;
 
-  str = (char *)nptr;
-  str = ft_iswhitespace(str);
-  sign = 1;
-  if (*str == '+')
-    str++;
-  else
+  tmp_nmb = nmb;
+  order = 1;
+  while (tmp_nmb)
   {
-    sign = -1;
-    str++;
+    order++;
+    tmp_nmb = tmp_nmb / 10;
   }
-  nbr = 0;
-  while (*str && (*str >= '0') && (*str <= '9'))
+  array = malloc((order + 1) * sizeof(char));
+  array[order] = '\0';
+  if (nmb < 0)
   {
-   nbr = nbr * 10 + *str - '0';
-   str++;
-  } 
-  return ((int)(nbr * sign));
+    array[0] = '-';
+    nmb = -nmb;
+  }
+  while (order--)
+  {
+    array[order] = nmb % 10 + 48;
+    nmb /= 10;
+  }
+  return (array);
 }
