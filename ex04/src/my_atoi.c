@@ -1,31 +1,31 @@
-char  *ft_iswhitespace(char *str)
+static char	*ft_iswhitespace(char *temp_str)
 {
-  while (*str == ' ' || (*str >= 9 && *str <= 13))
-		str++;
-	return (str);
+	while (*temp_str == ' ' || (*temp_str >= 9 && *temp_str <= 13))
+		temp_str++;
+	return (temp_str);
 }
 
-int   my_itoa(const char *nptr)
+int		  my_atoi(const char *nptr)
 {
-  char  *str;
-  int   sign;
-  int   nbr;
+	char				*temp_str;
+	int					sign;
+	unsigned long int	number;
 
-  str = (char *)nptr;
-  str = ft_iswhitespace(str);
-  sign = 1;
-  if (*str == '+')
-    str++;
-  else
-  {
-    sign = -1;
-    str++;
-  }
-  nbr = 0;
-  while (*str && (*str >= '0') && (*str <= '9'))
-  {
-   nbr = nbr * 10 + *str - '0';
-   str++;
-  } 
-  return ((int)(nbr * sign));
+	temp_str = (char *)nptr;
+	sign = 1;
+	number = 0;
+	temp_str = ft_iswhitespace(temp_str);
+	if (*temp_str == '+')
+		temp_str++;
+	else if (*temp_str == '-')
+	{
+		sign = -1;
+		temp_str++;
+	}
+	while (*temp_str && (*temp_str >= '0') && (*temp_str <= '9'))
+	{
+		number = (number * 10) + (*temp_str - '0');
+		temp_str++;
+	}
+	return ((int)(number * sign));
 }
