@@ -1,0 +1,11 @@
+#include "linked_list.h"
+
+node_t  *list_create(void *data)
+{
+  node_t  *list;
+
+  list = (node_t *)malloc(sizeof(node_t));
+  list->data = (void *)malloc(sizeof(data));
+  list->data = data;
+  list->next = NULL;
+}
