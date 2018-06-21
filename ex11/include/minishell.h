@@ -1,6 +1,18 @@
 #ifndef MINISHELL_H
-#define MINISHELL_H
+# define MINISHELL_H
+
 #include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <readline/readline.h>
+#include <unistd.h>
+#include <sys/wait.h>
+
+char  **get_input(char *input);
+
+
+#endif
+
 /*                                    Hints
  * Use "$_>" for prompt
  *
@@ -19,8 +31,4 @@
  *
  *
  * Good luck)
- *
- */
-
-
-#endif
+*/
