@@ -1,15 +1,23 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+#include "linked_list.h"
+#include "hash.h"
+#include <stddef.h>  
 #include <stdlib.h>
 #include <stdio.h>
+#include <signal.h>
 #include <string.h>
 #include <readline/readline.h>
 #include <unistd.h>
 #include <sys/wait.h>
 
 char  **get_input(char *input);
-
+void  child(pid_t child_pid, char **command);
+int   buildins(hashtable_t *ht, char **command, char *input);
+int   my_export(hashtable_t *env, char *args);
+int   my_env(hashtable_t *env);
+int   proc_vars(hashtable_t *ht, char **input);
 
 #endif
 
