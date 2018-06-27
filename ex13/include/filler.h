@@ -1,6 +1,11 @@
 #ifndef _FILLER_H_
 #define _FILLER_H_
 
+#include <unistd.h>
+#include <stdio.h>
+#include <string.h>
+#include <fcntl.h>
+#include <stdlib.h>
 
 typedef struct  map_s
 {

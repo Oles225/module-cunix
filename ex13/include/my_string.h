@@ -1,7 +1,6 @@
 #ifndef _STRING_H_
 #define _STRING_H_
 #include "filler.h"
-
 #define BUF_SIZE 64
 
 stream_t        *string_init();
