@@ -41,77 +41,9 @@ void string_append(stream_t *ptr, char *str)
     ptr->str[ptr->size + i] = str[i];
   ptr->size += len_1;
 }
-/*
-void        string_append(stream_t *ptr, char *str)
-{
-  unsigned int    size;
-  unsigned int    i;
 
-  ptr->str = realloc(ptr->str, ptr->limit + BUF_SIZE);
-  size = strlen(str);
-  ptr->size += size;
-  ptr->limit += size;
-  for (i = 0; i < size; i++)
-    ptr->str[ptr->size + i] = str[i];
-  ptr->str[ptr->size + i] = '\0';
-}
-*/
 void        string_destroy(stream_t *str)
 {
   free(str->str);
   free(str);
 }
-/*
-int main()
-{
-  stream_t *str2, *str1;
-
-  str2 = string_init();
-
-  string_append(str2, "Halllo");
-  string_append(str2, " there");
-  string_append(str2, " there");
-  string_append(str2, " there");
-  string_append(str2, " there");
-  string_append(str2, " there");
-  string_append(str2, " there");
-  string_append(str2, " there");
-  string_append(str2, " there");
-  string_append(str2, " there");
-  string_append(str2, " there");
-  string_append(str2, " there");
-  string_append(str2, " there");
-  string_append(str2, " there");
-  string_append(str2, " there");
-  string_append(str2, " there");
-  string_append(str2, " there");
-  string_append(str2, " there");
-  string_append(str2, " there");
-  string_append(str2, " there");
-  string_append(str2, " there");
-  string_append(str2, " there");
-  string_append(str2, " there");
-  string_append(str2, " there");
-  string_append(str2, " there");
-  string_append(str2, " there");
-  string_append(str2, " there");
-  string_append(str2, " there");
-  string_append(str2, " there");
-  string_append(str2, " there");
-  string_append(str2, " there");
-  string_append(str2, " there");
-  string_append(str2, " there");
-  string_append(str2, " there");
-  string_append(str2, " there");
-  string_append(str2, " there");
-  string_append(str2, "tail");
-  printf("%s\n", str2->str);
-  printf("size: %d, len: %d, limit: %d\n", str2->size, (int)strlen(str2->str), str2->limit);
-  str1 = string_create("tgggggggggggsgsgsgsggsgsggsgsgsggsggsgsgsgsgsgsggsgsgsgsgggsgsgsgsgsggsgsgsgsggsgsgsgsgsgsgsgsgsgsgsggsgsgsgsgsgsgsggsgsgsgsgsgsgsgsgsgsgsgsgsg`k");
-  printf("%s\n", str1->str);
-  printf("size: %d, len: %d, limit: %d\n", str1->size, (int)strlen(str1->str), str1->limit);
-  string_destroy(str2);
-  string_destroy(str1);
-  return 0;
-}
-*/
