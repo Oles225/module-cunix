@@ -41,33 +41,16 @@ typedef struct  stream_s
   unsigned int  limit;
 }               stream_t;
 
-typedef struct  filler_s
-{
-  stream_t      *current_stream;
-  int           status;
-  int           find_enemy;
-}               filler_t;
-
-/*Functions for reading*/
-req_t*          read_request(filler_t *filler);
-void            read_input(filler_t* filler);
-
 /*Functions for parsing*/
-req_t*          parse_all(char *all);
-pos_t           parse_size(char *answer);
+req_t*          read_all(void);
 
 /*Functions for game logic*/
-void            start_game(filler_t *filler);
-pos_t           play(req_t *core, filler_t *filler);
+pos_t           play(req_t *core);
 
 /*Functions for printing*/
 void            print_pos(pos_t p);
 
 /*Tools*/
-int             set_nonblocking(int fd);
-void            fatal(char *msg);
-void            create_filler(filler_t *filler);
-void            destroy_filler(filler_t *filler);
 void            create_req(req_t *req);
 void            destroy_req(req_t *req);
 #endif // _FILLER_H_

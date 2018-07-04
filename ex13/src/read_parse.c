@@ -53,10 +53,10 @@ void   read_map(req_t *req)
 void  read_elem(req_t *req)
 {
   elem_t  el;
-  int   h;
-  int   w;
-  char  *ch;
-  char  *ch_bgn;
+  int     h;
+  int     w;
+  char    *ch;
+  char    *ch_bgn;
 
   ch = malloc(sizeof(char) * 5);
   ch_bgn = ch;
