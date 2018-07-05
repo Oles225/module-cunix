@@ -46,11 +46,12 @@ req_t*          read_all(void);
 
 /*Functions for game logic*/
 pos_t           play(req_t *core);
+void            game(void);
 
 /*Functions for printing*/
 void            print_pos(pos_t p);
 
 /*Tools*/
-void            create_req(req_t *req);
+req_t           *create_req(req_t *req);
 void            destroy_req(req_t *req);
 #endif // _FILLER_H_

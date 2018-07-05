@@ -26,9 +26,9 @@ stream_t    *string_create(char *str)
 
 void string_append(stream_t *ptr, char *str)
 {
-  int   len_1;
-  int   len_2;
-  int   i;
+  unsigned int   len_1;
+  unsigned int   len_2;
+  unsigned int   i;
 
   len_1 = strlen(str);
 //  if (len_1 == 0)

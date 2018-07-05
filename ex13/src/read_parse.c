@@ -5,9 +5,10 @@
 
 void  read_symbol(req_t *req)
 {
-  char  *symbol;
+  char  symbol[2];
+  int   sgn;
 
-  read(0, symbol, 1);
+  sgn = read(0, symbol, 1);
   req->symbol = *symbol;
   read(0, symbol, 1);
 }
@@ -88,11 +89,12 @@ void  read_elem(req_t *req)
   req->elem = el;
 }
 
-req_t  *read_all(void)
+req_t  *read_all()
 {
   req_t   *req;
 
-  create_req(req);
+  req = NULL;
+  req = create_req(req);
   read_symbol(req);
   read_map(req);
   read_elem(req);
