@@ -4,7 +4,8 @@
 
 typedef struct header_t mem_list;
 
-struct header_t {
+struct header_t 
+{
 	size_t size;
 	unsigned is_free;
 	struct header_t *next;
@@ -13,11 +14,11 @@ struct header_t {
 mem_list *head = NULL;
 mem_list *tail = NULL;
 
-pthread_mutex_t global_malloc_lock;
-
 mem_list *get_free_block(size_t size)
 {
-	mem_list *curr = head;
+	mem_list *curr;
+
+  curr = head;
 	while(curr) {
 		if (curr->is_free && curr->size >= size)
 			return curr;
@@ -30,20 +31,22 @@ void free(void *block)
 {
 	mem_list  *header;
   mem_list  *tmp;
-	void *programbreak;
+	void      *prgbr;
 
 	if (!block)
 		return;
-	pthread_mutex_lock(&global_malloc_lock);
 	header = (mem_list *)block - 1;
-	programbreak = sbrk(0);
-	if ((char*)block + header->size == programbreak) {
-		if (head == tail) {
-			head = tail = NULL;
-		} else {
+	prgbr = sbrk(0);
+	if ((char *)block + header->size == prgbr)
+  {
+		if (head == tail)
+      head = tail = NULL;
+		else
+    {
 			tmp = head;
 			while (tmp) {
-				if(tmp->next == tail) {
+				if(tmp->next == tail)
+        {
 					tmp->next = NULL;
 					tail = tmp;
 				}
@@ -51,11 +54,9 @@ void free(void *block)
 			}
 		}
 		sbrk(0 - header->size - sizeof(mem_list));
-		pthread_mutex_unlock(&global_malloc_lock);
 		return;
 	}
 	header->is_free = 1;
-	pthread_mutex_unlock(&global_malloc_lock);
 }
 
 void *halloc(size_t size)
@@ -66,19 +67,16 @@ void *halloc(size_t size)
 
 	if (!size)
 		return NULL;
-	pthread_mutex_lock(&global_malloc_lock);
 	header = get_free_block(size);
-	if (header) {
+	if (header)
+  {
 		header->is_free = 0;
-		pthread_mutex_unlock(&global_malloc_lock);
 		return (void*)(header + 1);
 	}
 	total_size = sizeof(mem_list) + size;
 	block = sbrk(total_size);
-	if (block == (void*) -1) {
-		pthread_mutex_unlock(&global_malloc_lock);
+	if (block == (void*) -1)
 		return NULL;
-	}
 	header = block;
 	header->size = size;
 	header->is_free = 0;
@@ -88,6 +86,5 @@ void *halloc(size_t size)
 	if (tail)
 		tail->next = header;
 	tail = header;
-	pthread_mutex_unlock(&global_malloc_lock);
 	return (void*)(header + 1);
 }
